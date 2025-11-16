@@ -1,0 +1,30 @@
+{
+  "id": 1560,
+  "name": "Arcadian PFP #1560",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Vintage Wincheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Why So Serious"
+    }
+  ]
+}

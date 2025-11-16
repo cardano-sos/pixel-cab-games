@@ -1,0 +1,30 @@
+{
+  "id": 516,
+  "name": "Arcadian PFP #516",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Not The Robes You’re Looking For"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Cropped Blonde"
+    }
+  ]
+}

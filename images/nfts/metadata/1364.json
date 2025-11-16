@@ -1,0 +1,30 @@
+{
+  "id": 1364,
+  "name": "Arcadian PFP #1364",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Fresh Stripe"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

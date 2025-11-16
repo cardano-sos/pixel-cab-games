@@ -1,0 +1,30 @@
+{
+  "id": 1362,
+  "name": "Arcadian PFP #1362",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "McFly"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Military Cut"
+    }
+  ]
+}

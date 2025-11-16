@@ -1,0 +1,30 @@
+{
+  "id": 463,
+  "name": "Arcadian PFP #463",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Not The Robes You’re Looking For"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Flat Top"
+    }
+  ]
+}

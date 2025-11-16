@@ -1,0 +1,30 @@
+{
+  "id": 544,
+  "name": "Arcadian PFP #544",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Wrestlers Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Cropped Blonde"
+    }
+  ]
+}

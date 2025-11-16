@@ -1,0 +1,30 @@
+{
+  "id": 723,
+  "name": "Arcadian PFP #723",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Chin Dimple"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mohawk Brown"
+    }
+  ]
+}

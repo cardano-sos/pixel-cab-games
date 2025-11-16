@@ -1,0 +1,30 @@
+{
+  "id": 225,
+  "name": "Arcadian PFP #225",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Blue T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Closed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bald"
+    }
+  ]
+}

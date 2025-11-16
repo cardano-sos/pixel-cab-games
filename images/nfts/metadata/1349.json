@@ -1,0 +1,30 @@
+{
+  "id": 1349,
+  "name": "Arcadian PFP #1349",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Lifeguard"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Skeptical"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Dawson"
+    }
+  ]
+}

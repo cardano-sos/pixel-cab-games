@@ -1,0 +1,30 @@
+{
+  "id": 59,
+  "name": "Arcadian PFP #59",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Windcheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Grizzly Adams"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Headband"
+    }
+  ]
+}

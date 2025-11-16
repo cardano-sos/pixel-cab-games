@@ -1,0 +1,30 @@
+{
+  "id": 1738,
+  "name": "Arcadian PFP #1738",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Vintage Wincheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Fashion Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "McFly"
+    }
+  ]
+}

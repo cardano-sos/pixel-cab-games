@@ -1,0 +1,30 @@
+{
+  "id": 81,
+  "name": "Arcadian PFP #81",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Lifeguard"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Awkward"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Headband"
+    }
+  ]
+}

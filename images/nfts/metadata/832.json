@@ -1,0 +1,30 @@
+{
+  "id": 832,
+  "name": "Arcadian PFP #832",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "McFly"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "I’ll Be There"
+    }
+  ]
+}

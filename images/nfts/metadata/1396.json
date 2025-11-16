@@ -1,0 +1,30 @@
+{
+  "id": 1396,
+  "name": "Arcadian PFP #1396",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Invaders T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Open"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Big Fro"
+    }
+  ]
+}

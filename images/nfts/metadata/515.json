@@ -1,0 +1,30 @@
+{
+  "id": 515,
+  "name": "Arcadian PFP #515",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Who You Gonna call"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Lets Get Physical"
+    }
+  ]
+}

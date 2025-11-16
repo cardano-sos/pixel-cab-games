@@ -1,0 +1,30 @@
+{
+  "id": 904,
+  "name": "Arcadian PFP #904",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "First Blood"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Skeptical"
+    },
+    {
+      "trait_type": "Head",
+      "value": "McFly"
+    }
+  ]
+}

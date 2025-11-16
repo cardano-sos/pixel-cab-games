@@ -1,0 +1,30 @@
+{
+  "id": 1509,
+  "name": "Arcadian PFP #1509",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Fresh Stripe"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Poindexter"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Dawson"
+    }
+  ]
+}

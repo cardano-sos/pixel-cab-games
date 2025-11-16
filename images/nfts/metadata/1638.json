@@ -1,0 +1,30 @@
+{
+  "id": 1638,
+  "name": "Arcadian PFP #1638",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "8 Ball Black & White"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Chin Dimple"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Tight Fro"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 1866,
+  "name": "Arcadian PFP #1866",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Clown Suit"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Archaeologist Hat"
+    }
+  ]
+}

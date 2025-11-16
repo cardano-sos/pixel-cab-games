@@ -1,0 +1,30 @@
+{
+  "id": 1883,
+  "name": "Arcadian PFP #1883",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Cherry  T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Space Visor"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bandana"
+    }
+  ]
+}

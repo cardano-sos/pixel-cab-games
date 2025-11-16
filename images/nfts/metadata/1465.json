@@ -1,0 +1,30 @@
+{
+  "id": 1465,
+  "name": "Arcadian PFP #1465",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "McFly"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Chin Dimple"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Poindexter"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Headband"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 705,
+  "name": "Arcadian PFP #705",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Wrestlers Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Archaeologist Hat"
+    }
+  ]
+}

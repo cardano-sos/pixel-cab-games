@@ -1,0 +1,30 @@
+{
+  "id": 38,
+  "name": "Arcadian PFP #38",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Wrestlers Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Brown Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Fashion Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bowl Cut"
+    }
+  ]
+}

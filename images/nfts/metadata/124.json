@@ -1,0 +1,30 @@
+{
+  "id": 124,
+  "name": "Arcadian PFP #124",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Stubble"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Space Visor"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bowl Cut"
+    }
+  ]
+}

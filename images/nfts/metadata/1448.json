@@ -1,0 +1,30 @@
+{
+  "id": 1448,
+  "name": "Arcadian PFP #1448",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Grizzly Adams"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Fashion Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mohawk Punk"
+    }
+  ]
+}

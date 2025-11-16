@@ -1,0 +1,30 @@
+{
+  "id": 631,
+  "name": "Arcadian PFP #631",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Clown Suit"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

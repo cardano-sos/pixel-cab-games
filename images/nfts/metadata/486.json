@@ -1,0 +1,30 @@
+{
+  "id": 486,
+  "name": "Arcadian PFP #486",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Blue T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds 2"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Backwards Cap"
+    }
+  ]
+}

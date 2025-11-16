@@ -1,0 +1,30 @@
+{
+  "id": 1944,
+  "name": "Arcadian PFP #1944",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Powerglove It’s So Bad"
+    }
+  ]
+}

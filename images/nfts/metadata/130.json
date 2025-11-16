@@ -1,0 +1,30 @@
+{
+  "id": 130,
+  "name": "Arcadian PFP #130",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Invaders T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Big Fro"
+    }
+  ]
+}

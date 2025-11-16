@@ -1,0 +1,30 @@
+{
+  "id": 1701,
+  "name": "Arcadian PFP #1701",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Football Jersey"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "I’ll Be There"
+    }
+  ]
+}

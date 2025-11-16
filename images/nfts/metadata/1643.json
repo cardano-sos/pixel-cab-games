@@ -1,0 +1,30 @@
+{
+  "id": 1643,
+  "name": "Arcadian PFP #1643",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Plumbers Overalls"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds 2"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mohawk Brown"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 704,
+  "name": "Arcadian PFP #704",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Poindexter"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Archaeologist Hat"
+    }
+  ]
+}

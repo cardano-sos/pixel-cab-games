@@ -1,0 +1,30 @@
+{
+  "id": 736,
+  "name": "Arcadian PFP #736",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Crazy"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 855,
+  "name": "Arcadian PFP #855",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Letterman Jacket"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Degen Sunnies"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Tight Fro"
+    }
+  ]
+}

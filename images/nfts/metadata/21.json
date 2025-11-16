@@ -1,0 +1,30 @@
+{
+  "id": 21,
+  "name": "Arcadian PFP #21",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Windcheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Dawson"
+    }
+  ]
+}

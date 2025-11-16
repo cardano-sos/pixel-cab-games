@@ -1,0 +1,30 @@
+{
+  "id": 973,
+  "name": "Arcadian PFP #973",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Who You Gonna call"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Fashion Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

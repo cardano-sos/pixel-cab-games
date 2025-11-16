@@ -1,0 +1,30 @@
+{
+  "id": 567,
+  "name": "Arcadian PFP #567",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Blue T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Headband"
+    }
+  ]
+}

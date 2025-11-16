@@ -1,0 +1,30 @@
+{
+  "id": 1397,
+  "name": "Arcadian PFP #1397",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Plumbers Overalls"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Degen Sunnies"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Rocker"
+    }
+  ]
+}

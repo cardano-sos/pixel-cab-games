@@ -1,0 +1,30 @@
+{
+  "id": 213,
+  "name": "Arcadian PFP #213",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "8 Ball"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Skeptical"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Crazy"
+    }
+  ]
+}

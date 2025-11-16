@@ -1,0 +1,30 @@
+{
+  "id": 93,
+  "name": "Arcadian PFP #93",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Vintage Wincheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "4th Wall"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Dawson"
+    }
+  ]
+}

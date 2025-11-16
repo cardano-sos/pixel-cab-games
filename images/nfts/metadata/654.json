@@ -1,0 +1,30 @@
+{
+  "id": 654,
+  "name": "Arcadian PFP #654",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "8 Ball"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Stubble"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

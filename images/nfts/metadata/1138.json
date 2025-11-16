@@ -1,0 +1,30 @@
+{
+  "id": 1138,
+  "name": "Arcadian PFP #1138",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Rocker"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Jawdropping"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

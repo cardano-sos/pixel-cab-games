@@ -1,0 +1,30 @@
+{
+  "id": 1619,
+  "name": "Arcadian PFP #1619",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Cherry  T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "I’ll Be There"
+    }
+  ]
+}

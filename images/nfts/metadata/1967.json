@@ -1,0 +1,30 @@
+{
+  "id": 1967,
+  "name": "Arcadian PFP #1967",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Wrestlers Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Wax On"
+    }
+  ]
+}

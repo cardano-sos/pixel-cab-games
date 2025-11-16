@@ -1,0 +1,30 @@
+{
+  "id": 883,
+  "name": "Arcadian PFP #883",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Rocker"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disappointed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "McFly"
+    }
+  ]
+}

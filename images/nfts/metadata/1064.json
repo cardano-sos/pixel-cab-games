@@ -1,0 +1,30 @@
+{
+  "id": 1064,
+  "name": "Arcadian PFP #1064",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Wrestlers Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds 2"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Grey"
+    }
+  ]
+}

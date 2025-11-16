@@ -1,0 +1,30 @@
+{
+  "id": 469,
+  "name": "Arcadian PFP #469",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Jawdropping"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Degen Sunnies"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Headband"
+    }
+  ]
+}

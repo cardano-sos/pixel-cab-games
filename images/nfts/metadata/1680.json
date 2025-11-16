@@ -1,0 +1,30 @@
+{
+  "id": 1680,
+  "name": "Arcadian PFP #1680",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Delirious"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Rambo"
+    }
+  ]
+}

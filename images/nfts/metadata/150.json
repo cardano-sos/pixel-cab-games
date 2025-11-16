@@ -1,0 +1,30 @@
+{
+  "id": 150,
+  "name": "Arcadian PFP #150",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Rocker"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Brown"
+    }
+  ]
+}

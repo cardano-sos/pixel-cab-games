@@ -1,0 +1,30 @@
+{
+  "id": 977,
+  "name": "Arcadian PFP #977",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Archaeologist"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Brown Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Backwards Cap"
+    }
+  ]
+}

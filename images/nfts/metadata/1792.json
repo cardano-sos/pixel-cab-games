@@ -1,0 +1,30 @@
+{
+  "id": 1792,
+  "name": "Arcadian PFP #1792",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Fly Hat"
+    }
+  ]
+}

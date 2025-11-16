@@ -1,0 +1,30 @@
+{
+  "id": 1230,
+  "name": "Arcadian PFP #1230",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Vintage Wincheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Stubble"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Military Cut"
+    }
+  ]
+}

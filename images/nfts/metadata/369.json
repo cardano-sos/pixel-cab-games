@@ -1,0 +1,30 @@
+{
+  "id": 369,
+  "name": "Arcadian PFP #369",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Blues Musician"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Jawdropping"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Flat Top"
+    }
+  ]
+}

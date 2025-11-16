@@ -1,0 +1,30 @@
+{
+  "id": 1446,
+  "name": "Arcadian PFP #1446",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pity The Fool"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Cropped Blonde"
+    }
+  ]
+}

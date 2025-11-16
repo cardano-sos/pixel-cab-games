@@ -1,0 +1,30 @@
+{
+  "id": 1154,
+  "name": "Arcadian PFP #1154",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Who You Gonna call"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disappointed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Why So Serious"
+    }
+  ]
+}

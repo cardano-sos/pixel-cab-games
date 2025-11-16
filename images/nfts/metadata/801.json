@@ -1,0 +1,30 @@
+{
+  "id": 801,
+  "name": "Arcadian PFP #801",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Lifeguard"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops Smoking"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Archaeologist Hat"
+    }
+  ]
+}

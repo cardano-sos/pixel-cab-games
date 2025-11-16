@@ -1,0 +1,30 @@
+{
+  "id": 1309,
+  "name": "Arcadian PFP #1309",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Plumbers Overalls"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bowl Cut"
+    }
+  ]
+}

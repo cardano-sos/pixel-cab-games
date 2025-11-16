@@ -1,0 +1,30 @@
+{
+  "id": 1655,
+  "name": "Arcadian PFP #1655",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "PCG T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Big Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Backwards Cap"
+    }
+  ]
+}

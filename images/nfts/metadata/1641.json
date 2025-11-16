@@ -1,0 +1,30 @@
+{
+  "id": 1641,
+  "name": "Arcadian PFP #1641",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "First Blood"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Nerd"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bowl Cut"
+    }
+  ]
+}

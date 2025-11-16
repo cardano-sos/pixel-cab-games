@@ -1,0 +1,30 @@
+{
+  "id": 798,
+  "name": "Arcadian PFP #798",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "First Blood"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Bowl Cut"
+    }
+  ]
+}

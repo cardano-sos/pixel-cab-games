@@ -1,0 +1,30 @@
+{
+  "id": 1979,
+  "name": "Arcadian PFP #1979",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds"
+    },
+    {
+      "trait_type": "Head",
+      "value": "I’ll Be There"
+    }
+  ]
+}

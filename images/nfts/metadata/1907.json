@@ -1,0 +1,30 @@
+{
+  "id": 1907,
+  "name": "Arcadian PFP #1907",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Vintage Wincheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Why So Serious"
+    }
+  ]
+}

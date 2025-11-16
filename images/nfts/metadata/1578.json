@@ -1,0 +1,30 @@
+{
+  "id": 1578,
+  "name": "Arcadian PFP #1578",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Lifeguard"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Brown"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Big Fro"
+    }
+  ]
+}

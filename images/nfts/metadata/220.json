@@ -1,0 +1,30 @@
+{
+  "id": 220,
+  "name": "Arcadian PFP #220",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Letterman Jacket"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disappointed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Space Visor"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Cropped Blonde"
+    }
+  ]
+}

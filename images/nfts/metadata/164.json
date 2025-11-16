@@ -1,0 +1,30 @@
+{
+  "id": 164,
+  "name": "Arcadian PFP #164",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "First Blood"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Cheeky"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Space Visor"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Big Fro"
+    }
+  ]
+}

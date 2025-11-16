@@ -1,0 +1,30 @@
+{
+  "id": 131,
+  "name": "Arcadian PFP #131",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "McFly"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Rambo"
+    }
+  ]
+}

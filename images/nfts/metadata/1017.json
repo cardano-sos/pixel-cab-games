@@ -1,0 +1,30 @@
+{
+  "id": 1017,
+  "name": "Arcadian PFP #1017",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Come With Me If You Want To Live"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer Blonde"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Cropped Blonde"
+    }
+  ]
+}

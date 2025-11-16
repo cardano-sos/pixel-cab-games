@@ -1,0 +1,51 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+  "name": "Node.js & TypeScript",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/typescript-node",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [3000],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "npm i",
+
+  // Load environment variables from .envrc if it exists
+  "postStartCommand": "bash .devcontainer/load-env.sh",
+
+  // Pass environment variables to container processes
+  "remoteEnv": {
+    "MINTTING_WALLET_OUTPUT_MNEMONIC": "${localEnv:MINTTING_WALLET_OUTPUT_MNEMONIC}",
+    "NEXT_PUBLIC_PROFIT_WALLET": "${localEnv:NEXT_PUBLIC_PROFIT_WALLET}",
+    "POLICY_ID": "${localEnv:POLICY_ID}",
+    "JWT_SECRET": "${localEnv:JWT_SECRET}",
+    "BLOCKFROST_PROJECT_ID": "${localEnv:BLOCKFROST_PROJECT_ID}"
+  },
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "wix.vscode-import-cost",
+        "formulahendry.code-runner",
+        "WallabyJs.console-ninja",
+        "YoavBls.pretty-ts-errors",
+        "Tyriar.sort-lines",
+        "shardulm94.trailing-spaces",
+        "huntertran.auto-markdown-toc",
+        "kennylong.kubernetes-yaml-formatter"
+      ]
+    }
+  },
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "root"
+}

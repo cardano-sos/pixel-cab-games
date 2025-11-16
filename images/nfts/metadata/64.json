@@ -1,0 +1,30 @@
+{
+  "id": 64,
+  "name": "Arcadian PFP #64",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Come With Me If You Want To Live"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Snaggle Tooth"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Degen Sunnies"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Plumbers Hat"
+    }
+  ]
+}

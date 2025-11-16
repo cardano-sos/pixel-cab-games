@@ -1,0 +1,30 @@
+{
+  "id": 30,
+  "name": "Arcadian PFP #30",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Come With Me If You Want To Live"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Chin Dimple"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Nerd"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 951,
+  "name": "Arcadian PFP #951",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "First Blood"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Chin Dimple"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Poindexter"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Backwards Cap"
+    }
+  ]
+}

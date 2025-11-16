@@ -1,0 +1,30 @@
+{
+  "id": 69,
+  "name": "Arcadian PFP #69",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Not The Robes You’re Looking For"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops Smoking"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Backwards Cap"
+    }
+  ]
+}

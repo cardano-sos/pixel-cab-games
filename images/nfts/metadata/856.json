@@ -1,0 +1,30 @@
+{
+  "id": 856,
+  "name": "Arcadian PFP #856",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pixel Heart"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Open"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds 2"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Crazy"
+    }
+  ]
+}

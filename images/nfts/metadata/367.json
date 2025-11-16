@@ -1,0 +1,30 @@
+{
+  "id": 367,
+  "name": "Arcadian PFP #367",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Safari Shirt"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Grey"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Brown"
+    }
+  ]
+}

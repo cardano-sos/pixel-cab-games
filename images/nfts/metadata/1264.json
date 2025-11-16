@@ -1,0 +1,30 @@
+{
+  "id": 1264,
+  "name": "Arcadian PFP #1264",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Letterman Jacket"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Grizzly Adams"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "I’ll Be There"
+    }
+  ]
+}

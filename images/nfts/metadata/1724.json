@@ -1,0 +1,30 @@
+{
+  "id": 1724,
+  "name": "Arcadian PFP #1724",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Who You Gonna call"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Grizzly Adams"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wired"
+    },
+    {
+      "trait_type": "Head",
+      "value": "McFly"
+    }
+  ]
+}

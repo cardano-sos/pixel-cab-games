@@ -1,0 +1,30 @@
+{
+  "id": 1106,
+  "name": "Arcadian PFP #1106",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Nips"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disappointed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "I’ll Be Back"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Flat Top"
+    }
+  ]
+}

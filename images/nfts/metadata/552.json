@@ -1,0 +1,30 @@
+{
+  "id": 552,
+  "name": "Arcadian PFP #552",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pity The Fool"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Brown Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Brown"
+    }
+  ]
+}

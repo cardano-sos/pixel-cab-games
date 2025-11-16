@@ -1,0 +1,42 @@
+# Example .envrc file for direnv
+# Copy this to .envrc and update with your values
+# Run: direnv allow
+
+# Blockfrost API Configuration
+export BLOCKFROST_PROJECT_ID=your_blockfrost_project_id
+
+# Minting Wallet (24-word mnemonic phrase)
+export MINTTING_WALLET_OUTPUT_MNEMONIC="word1 word2 word3 ... word24"
+
+# JWT Secret for session management
+export JWT_SECRET=your-secure-secret-key-here
+
+# REQUIRED: Your Cardano Wallet Address (receives minting payments)
+# Must use NEXT_PUBLIC_ prefix to be accessible in browser
+export NEXT_PUBLIC_PROFIT_WALLET=addr1_your_wallet_address_here
+
+# OPTIONAL: Cardano Policy ID
+# If not set, will be AUTO-GENERATED from MINTTING_WALLET_OUTPUT_MNEMONIC
+# This is a server-side only variable (not exposed to the client)
+# export POLICY_ID=your_policy_id_here
+
+# Note: Policy ID is auto-generated from mnemonic if not set
+# To generate manually: npm run generate-policy
+
+# Discord OAuth Configuration (for admin authentication)
+# Get these from: https://discord.com/developers/applications
+export DISCORD_CLIENT_ID=your_discord_client_id_here
+export DISCORD_CLIENT_SECRET=your_discord_client_secret_here
+export DISCORD_REDIRECT_URI=http://localhost:3000/api/auth/discord/callback
+
+# Discord Admin User IDs (comma-separated)
+# Get your Discord ID: Enable Developer Mode in Discord, right-click profile, Copy ID
+export DISCORD_ADMIN_USER_IDS=123456789012345678
+
+# Supabase Configuration
+export NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+export NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+export SUPABASE_SERVICE_ROLE_KEY=your_service_role_key_here
+
+# Cardano Network (preprod or mainnet)
+export CARDANO_NETWORK=preprod

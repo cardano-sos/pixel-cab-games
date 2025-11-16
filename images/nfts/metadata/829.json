@@ -1,0 +1,30 @@
+{
+  "id": 829,
+  "name": "Arcadian PFP #829",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Delirious"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Glazed"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Brown"
+    }
+  ]
+}

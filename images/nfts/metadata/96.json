@@ -1,0 +1,30 @@
+{
+  "id": 96,
+  "name": "Arcadian PFP #96",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Cherry  T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Soup Strainer"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Space Visor"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mohawk Brown"
+    }
+  ]
+}

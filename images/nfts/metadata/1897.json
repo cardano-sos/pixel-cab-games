@@ -1,0 +1,30 @@
+{
+  "id": 1897,
+  "name": "Arcadian PFP #1897",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "PCG T"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Mutton Chops Smoking"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Grey"
+    }
+  ]
+}

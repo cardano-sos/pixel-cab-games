@@ -1,0 +1,30 @@
+{
+  "id": 1492,
+  "name": "Arcadian PFP #1492",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Singlet"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disgust"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Glazed"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Lets Get Physical"
+    }
+  ]
+}

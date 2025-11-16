@@ -1,0 +1,30 @@
+{
+  "id": 1402,
+  "name": "Arcadian PFP #1402",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "8 Ball"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Brown"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Fashion Sunglasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Nerd"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": 1868,
+  "name": "Arcadian PFP #1868",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Archaeologist"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Disappointed"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Round Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

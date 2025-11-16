@@ -1,0 +1,30 @@
+{
+  "id": 496,
+  "name": "Arcadian PFP #496",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Pity The Fool"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Brown Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Glazed"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mullet Blonde"
+    }
+  ]
+}

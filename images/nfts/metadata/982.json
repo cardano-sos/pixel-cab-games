@@ -1,0 +1,30 @@
+{
+  "id": 982,
+  "name": "Arcadian PFP #982",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Windcheater"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Brown Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Thick  Brows"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Mohawk Punk"
+    }
+  ]
+}

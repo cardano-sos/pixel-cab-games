@@ -1,0 +1,30 @@
+{
+  "id": 66,
+  "name": "Arcadian PFP #66",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Fresh Stripe"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Brown"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Robot"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Wax On"
+    }
+  ]
+}

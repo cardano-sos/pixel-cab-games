@@ -1,0 +1,30 @@
+{
+  "id": 1726,
+  "name": "Arcadian PFP #1726",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 1"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "McFly"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Open"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Wraparounds"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Walkman Blonde"
+    }
+  ]
+}

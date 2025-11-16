@@ -1,0 +1,30 @@
+{
+  "id": 846,
+  "name": "Arcadian PFP #846",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "Rocker"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Van Dyke Grey"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Sleep Deprived"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Tight Fro"
+    }
+  ]
+}

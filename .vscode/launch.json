@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Next.js: debug",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev -- -H 0.0.0.0",
+      "sourceMaps": true
+    }
+  ]
+}

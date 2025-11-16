@@ -1,0 +1,30 @@
+{
+  "id": 1888,
+  "name": "Arcadian PFP #1888",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Mr Frosty"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Body 2"
+    },
+    {
+      "trait_type": "Clothing",
+      "value": "PCG Plushie"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Handlebars"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "4th Wall"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Powerglove It’s So Bad"
+    }
+  ]
+}
