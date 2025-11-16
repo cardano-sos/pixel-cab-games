@@ -194,10 +194,14 @@ export async function POST(request: NextRequest) {
     // console.log('📝 Metadata structure:', JSON.stringify(metadata, null, 2));
     console.log('📏 Metadata size (approx):', JSON.stringify(metadata).length, 'characters');
 
-    // Use only the largest UTxO to minimize transaction size
-    // This avoids "Maximum Input Count Exceeded" error
-    const utxosToUse = [sortedUtxos[0]];
-    console.log(`🎯 Using 1 UTxO with ${parseInt(sortedUtxos[0].output.amount.find((amt: any) => amt.unit === 'lovelace')?.quantity || '0') / 1000000} ADA`);
+    // Use up to 3 largest UTxOs to ensure we have enough for payment + fees + min ADA
+    // 50 ADA + ~2 ADA (NFT min ADA) + ~1 ADA (fees) = ~53 ADA needed
+    const utxosToUse = sortedUtxos.slice(0, Math.min(3, sortedUtxos.length));
+    const utxosTotal = utxosToUse.reduce((sum: number, utxo: any) => {
+      const lovelaceAmount = parseInt(utxo.output.amount.find((amt: any) => amt.unit === 'lovelace')?.quantity || '0');
+      return sum + lovelaceAmount;
+    }, 0);
+    console.log(`🎯 Using ${utxosToUse.length} UTxO(s) with ${utxosTotal / 1000000} ADA total`);
 
     const unsignedTx = await txBuilder
       .mint('1', policyId, assetNameHex)
@@ -206,7 +210,7 @@ export async function POST(request: NextRequest) {
       .txOut(profitWallet, [{ unit: 'lovelace', quantity: '50000000' }]) // Exactly 50 ADA to profit wallet
       .txOut(userAddress, [{ unit: `${policyId}${assetNameHex}`, quantity: '1' }]) // Minted NFT to user
       .changeAddress(userAddress) // All change (excess ADA + tokens/NFTs from consumed UTxOs) goes back to user
-      .selectUtxosFrom(utxosToUse) // Use only largest UTxO to minimize tx size
+      .selectUtxosFrom(utxosToUse) // Use up to 3 largest UTxOs
       .complete();
 
     console.log('✅ Unsigned transaction built successfully');

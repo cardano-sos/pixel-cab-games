@@ -29,39 +29,88 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       if (!activeWallet) return;
 
       const utxos = await activeWallet.getUtxos();
-      const balanceData = utxos.map((utxo: any) => ({
-        unit: utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.unit || 'lovelace',
-        quantity: utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.quantity || '0'
-      }));
+
+      // Sum lovelace across all UTxOs
+      const totalLovelace = utxos.reduce((sum: number, utxo: any) => {
+        const lovelaceAmount = utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.quantity || '0';
+        return sum + parseInt(lovelaceAmount);
+      }, 0);
+
+      // Collect all non-lovelace assets
+      const assetMap = new Map<string, number>();
+      utxos.forEach((utxo: any) => {
+        utxo.output.amount.forEach((asset: any) => {
+          if (asset.unit !== 'lovelace') {
+            const current = assetMap.get(asset.unit) || 0;
+            assetMap.set(asset.unit, current + parseInt(asset.quantity));
+          }
+        });
+      });
+
+      // Create balance array with summed values
+      const balanceData = [
+        { unit: 'lovelace', quantity: totalLovelace.toString() },
+        ...Array.from(assetMap.entries()).map(([unit, quantity]) => ({
+          unit,
+          quantity: quantity.toString()
+        }))
+      ];
+
       setBalance(balanceData);
     } catch (error) {
       console.error('Error refreshing balance:', error);
     }
   }, [wallet]);
 
-  const checkSession = useCallback(async () => {
-    try {
-      const response = await fetch('/api/auth/session');
-      if (response.ok) {
-        const data = await response.json();
-        setWalletId(data.session.walletId);
-        setAddress(data.session.address);
-        setIsConnected(true);
-
-        // Reinitialize wallet
-        const walletInstance = await BrowserWallet.enable(data.session.walletId);
-        setWallet(walletInstance);
-        await refreshBalance(walletInstance);
-      }
-    } catch (error) {
-      console.error('Session check error:', error);
-    }
-  }, [refreshBalance]);
-
-  // Check session on mount
+  // Check session on mount only (no dependencies to avoid infinite loop)
   useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const response = await fetch('/api/auth/session');
+        if (response.ok) {
+          const data = await response.json();
+          setWalletId(data.session.walletId);
+          setAddress(data.session.address);
+          setIsConnected(true);
+
+          // Reinitialize wallet
+          const walletInstance = await BrowserWallet.enable(data.session.walletId);
+          setWallet(walletInstance);
+
+          // Refresh balance once
+          const utxos = await walletInstance.getUtxos();
+          const totalLovelace = utxos.reduce((sum: number, utxo: any) => {
+            const lovelaceAmount = utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.quantity || '0';
+            return sum + parseInt(lovelaceAmount);
+          }, 0);
+
+          const assetMap = new Map<string, number>();
+          utxos.forEach((utxo: any) => {
+            utxo.output.amount.forEach((asset: any) => {
+              if (asset.unit !== 'lovelace') {
+                const current = assetMap.get(asset.unit) || 0;
+                assetMap.set(asset.unit, current + parseInt(asset.quantity));
+              }
+            });
+          });
+
+          const balanceData = [
+            { unit: 'lovelace', quantity: totalLovelace.toString() },
+            ...Array.from(assetMap.entries()).map(([unit, quantity]) => ({
+              unit,
+              quantity: quantity.toString()
+            }))
+          ];
+
+          setBalance(balanceData);
+        }
+      } catch (error) {
+        console.error('Session check error:', error);
+      }
+    };
+
     checkSession();
-  }, [checkSession]);
+  }, []); // Empty dependency array - run only once on mount
 
   const connect = async (selectedWalletId: string) => {
     try {
