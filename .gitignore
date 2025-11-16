@@ -173,3 +173,10 @@ next-env.d.ts
 # Local database
 /data
 data/
+
+# NFT image archives and source files
+images/nfts.zip
+images/nfts/images-100-colormap/
+images/nfts/images-200-colormap/
+images/nfts/images-original/
+images/nfts/images-original-rgba/
