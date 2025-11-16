@@ -33,8 +33,8 @@ export async function GET(
     const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
 
     // Check if sold
-    const isSold = isNFTSold(nftId);
-    const sale = isSold ? getSaleByNFTId(nftId) : null;
+    const isSold = await isNFTSold(nftId);
+    const sale = isSold ? await getSaleByNFTId(nftId) : null;
 
     return NextResponse.json({
       id: nftId,

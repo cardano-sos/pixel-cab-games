@@ -173,7 +173,7 @@ export default function ServerBurnPage() {
           <ol className="list-decimal list-inside space-y-1 text-sm text-gray-300">
             <li>You send the NFT to the minting wallet address</li>
             <li>The minting wallet (server-side) burns the NFT</li>
-            <li>The burn requires a signature from the minting wallet's policy key</li>
+            <li>The burn requires a signature from the minting wallet&apos;s policy key</li>
             <li>Only the minting wallet can provide this signature</li>
           </ol>
         </div>

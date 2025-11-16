@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { walletData } from "@/data/walletData";
+import { walletData } from "@/config/walletData";
 import { useWallet } from "@/providers/WalletProvider";
 
 export const UnifiedWallet = () => {

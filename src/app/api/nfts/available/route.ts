@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const mode = searchParams.get('mode'); // 'all', 'random', or 'count'
     const limit = parseInt(searchParams.get('limit') || '10', 10);
 
-    const availableIds = getAvailableNFTIds();
+    const availableIds = await getAvailableNFTIds();
 
     if (mode === 'count') {
       return NextResponse.json({
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (mode === 'random') {
-      const randomId = getRandomAvailableNFTId();
+      const randomId = await getRandomAvailableNFTId();
       if (!randomId) {
         return NextResponse.json(
           { error: 'No NFTs available' },

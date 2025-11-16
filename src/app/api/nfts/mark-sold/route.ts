@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if already sold
-    if (isNFTSold(id)) {
+    if (await isNFTSold(id)) {
       return NextResponse.json(
         { error: `NFT ${id} is already sold` },
         { status: 409 }
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Mark as sold
-    markNFTAsSold(id, walletAddress, txHash);
+    await markNFTAsSold(id, walletAddress, txHash);
 
     return NextResponse.json({
       success: true,

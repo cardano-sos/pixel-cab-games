@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -34,9 +34,30 @@ export default function AdminPage() {
   const [burnSuccess, setBurnSuccess] = useState("");
   const [burnTxHash, setBurnTxHash] = useState("");
 
-  // Check authentication and load data on mount
-  useEffect(() => {
-    checkAuth();
+  // Define checkAuth function before using it in useEffect
+  const checkAuth = useCallback(async () => {
+    try {
+      const response = await fetch('/api/admin/stats');
+      const data = await response.json();
+
+      if (response.status === 401) {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      if (response.ok) {
+        setIsAuthenticated(true);
+        setCurrentUser(data.authenticatedUser);
+        setStats(data);
+        loadMintingAddress();
+      } else {
+        setIsAuthenticated(false);
+        setAuthError(data.error || 'Failed to authenticate');
+      }
+    } catch (err: any) {
+      setIsAuthenticated(false);
+      setAuthError(err.message);
+    }
   }, []);
 
   // Check for OAuth errors/success in URL
@@ -60,33 +81,11 @@ export default function AdminPage() {
     } else if (searchParams.get('success')) {
       // Successful login, check auth status
       checkAuth();
+    } else {
+      // Initial load - check auth
+      checkAuth();
     }
-  }, [searchParams]);
-
-  const checkAuth = async () => {
-    try {
-      const response = await fetch('/api/admin/stats');
-      const data = await response.json();
-
-      if (response.status === 401) {
-        setIsAuthenticated(false);
-        return;
-      }
-
-      if (response.ok) {
-        setIsAuthenticated(true);
-        setCurrentUser(data.authenticatedUser);
-        setStats(data);
-        loadMintingAddress();
-      } else {
-        setIsAuthenticated(false);
-        setAuthError(data.error || 'Failed to authenticate');
-      }
-    } catch (err: any) {
-      setIsAuthenticated(false);
-      setAuthError(err.message);
-    }
-  };
+  }, [searchParams, checkAuth]);
 
   const loadStats = async () => {
     try {
@@ -488,7 +487,7 @@ export default function AdminPage() {
               <ol className="list-decimal list-inside space-y-1 text-sm text-gray-300">
                 <li>Send the NFT to the minting wallet address below</li>
                 <li>Get the asset unit from the minting transaction (or enter it manually)</li>
-                <li>Click "Burn NFT" to permanently destroy it</li>
+                <li>Click &quot;Burn NFT&quot; to permanently destroy it</li>
               </ol>
             </div>
 

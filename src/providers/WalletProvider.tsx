@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { BrowserWallet } from '@meshsdk/core';
 import { useRouter } from 'next/navigation';
 
@@ -23,12 +23,23 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [balance, setBalance] = useState<any[] | null>(null);
   const [wallet, setWallet] = useState<BrowserWallet | null>(null);
 
-  // Check session on mount
-  useEffect(() => {
-    checkSession();
-  }, []);
+  const refreshBalance = useCallback(async (walletInstance?: BrowserWallet) => {
+    try {
+      const activeWallet = walletInstance || wallet;
+      if (!activeWallet) return;
 
-  const checkSession = async () => {
+      const utxos = await activeWallet.getUtxos();
+      const balanceData = utxos.map((utxo: any) => ({
+        unit: utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.unit || 'lovelace',
+        quantity: utxo.output.amount.find((a: any) => a.unit === 'lovelace')?.quantity || '0'
+      }));
+      setBalance(balanceData);
+    } catch (error) {
+      console.error('Error refreshing balance:', error);
+    }
+  }, [wallet]);
+
+  const checkSession = useCallback(async () => {
     try {
       const response = await fetch('/api/auth/session');
       if (response.ok) {
@@ -45,7 +56,12 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     } catch (error) {
       console.error('Session check error:', error);
     }
-  };
+  }, [refreshBalance]);
+
+  // Check session on mount
+  useEffect(() => {
+    checkSession();
+  }, [checkSession]);
 
   const connect = async (selectedWalletId: string) => {
     try {
@@ -87,18 +103,6 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setIsConnected(false);
     } catch (error) {
       console.error('Disconnect error:', error);
-    }
-  };
-
-  const refreshBalance = async (walletInstance?: BrowserWallet) => {
-    const w = walletInstance || wallet;
-    if (w) {
-      try {
-        const walletBalance = await w.getBalance();
-        setBalance(walletBalance);
-      } catch (error) {
-        console.error('Balance fetch error:', error);
-      }
     }
   };
 

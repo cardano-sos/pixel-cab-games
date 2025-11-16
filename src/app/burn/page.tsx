@@ -103,7 +103,6 @@ export default function BurnPage() {
 
       // Build the burn transaction
       const txBuilder = new MeshTxBuilder({
-        fetcher: wallet,
         verbose: true // Enable verbose for debugging
       });
 
