@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllSales, getAvailableNFTIds, getCurrentNetwork } from '@/lib/db';
+import { getAllSales, getSalesStats, getCurrentNetwork } from '@/lib/db';
 import { requireAdminSession } from '@/lib/auth/session';
 
 export async function GET(request: NextRequest) {
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const sales = await getAllSales();
-    const available = await getAvailableNFTIds();
+    const stats = await getSalesStats();
     const network = getCurrentNetwork();
 
     return NextResponse.json({
@@ -29,8 +29,8 @@ export async function GET(request: NextRequest) {
       },
       network: network.toUpperCase(),
       totalSupply: 2000,
-      sold: sales.length,
-      available: available.length,
+      sold: stats.totalSold,
+      available: stats.totalAvailable,
       recentSales: sales.slice(0, 10).map(sale => ({
         nftId: sale.nftId,
         walletAddress: sale.walletAddress,

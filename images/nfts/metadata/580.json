@@ -1,6 +1,7 @@
 {
   "id": 580,
   "name": "Arcadian PFP #580",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Vintage Wincheater"
+      "value": "Wrestlers Singlet"
     },
     {
       "trait_type": "Mouth",
-      "value": "Mutton Chops"
+      "value": "Disgust"
     },
     {
       "trait_type": "Eyes",
-      "value": "Fashion Sunglasses"
+      "value": "Wired"
     },
     {
       "trait_type": "Head",
-      "value": "Walkman Dark"
+      "value": "Tight Fade"
     }
   ]
 }

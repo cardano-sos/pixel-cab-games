@@ -13,12 +13,14 @@ CREATE TABLE IF NOT EXISTS nft_sales_preprod (
   id BIGSERIAL PRIMARY KEY,
   nft_id INTEGER UNIQUE NOT NULL,
   wallet_address TEXT NOT NULL,
-  tx_hash TEXT NOT NULL,
+  tx_hash TEXT, -- NULL for reservations, populated on sale
   sold_at TIMESTAMPTZ DEFAULT NOW(),
+  reserved_at TIMESTAMPTZ, -- Set when NFT is reserved, NULL when sold
+  reserved_by TEXT, -- Wallet that reserved the NFT
 
   CONSTRAINT nft_sales_preprod_nft_id_range CHECK (nft_id >= 1 AND nft_id <= 2000),
   CONSTRAINT nft_sales_preprod_valid_wallet CHECK (LENGTH(wallet_address) > 10),
-  CONSTRAINT nft_sales_preprod_valid_tx_hash CHECK (LENGTH(tx_hash) > 10)
+  CONSTRAINT nft_sales_preprod_valid_tx_hash CHECK (tx_hash IS NULL OR LENGTH(tx_hash) > 10)
 );
 
 -- MAINNET Tables
@@ -26,23 +28,27 @@ CREATE TABLE IF NOT EXISTS nft_sales_mainnet (
   id BIGSERIAL PRIMARY KEY,
   nft_id INTEGER UNIQUE NOT NULL,
   wallet_address TEXT NOT NULL,
-  tx_hash TEXT NOT NULL,
+  tx_hash TEXT, -- NULL for reservations, populated on sale
   sold_at TIMESTAMPTZ DEFAULT NOW(),
+  reserved_at TIMESTAMPTZ, -- Set when NFT is reserved, NULL when sold
+  reserved_by TEXT, -- Wallet that reserved the NFT
 
   CONSTRAINT nft_sales_mainnet_nft_id_range CHECK (nft_id >= 1 AND nft_id <= 2000),
   CONSTRAINT nft_sales_mainnet_valid_wallet CHECK (LENGTH(wallet_address) > 10),
-  CONSTRAINT nft_sales_mainnet_valid_tx_hash CHECK (LENGTH(tx_hash) > 10)
+  CONSTRAINT nft_sales_mainnet_valid_tx_hash CHECK (tx_hash IS NULL OR LENGTH(tx_hash) > 10)
 );
 
 -- Indexes for PREPROD
 CREATE INDEX IF NOT EXISTS idx_nft_sales_preprod_sold_at ON nft_sales_preprod(sold_at DESC);
 CREATE INDEX IF NOT EXISTS idx_nft_sales_preprod_wallet ON nft_sales_preprod(wallet_address);
 CREATE INDEX IF NOT EXISTS idx_nft_sales_preprod_tx_hash ON nft_sales_preprod(tx_hash);
+CREATE INDEX IF NOT EXISTS idx_nft_sales_preprod_reserved ON nft_sales_preprod(reserved_at) WHERE reserved_at IS NOT NULL;
 
 -- Indexes for MAINNET
 CREATE INDEX IF NOT EXISTS idx_nft_sales_mainnet_sold_at ON nft_sales_mainnet(sold_at DESC);
 CREATE INDEX IF NOT EXISTS idx_nft_sales_mainnet_wallet ON nft_sales_mainnet(wallet_address);
 CREATE INDEX IF NOT EXISTS idx_nft_sales_mainnet_tx_hash ON nft_sales_mainnet(tx_hash);
+CREATE INDEX IF NOT EXISTS idx_nft_sales_mainnet_reserved ON nft_sales_mainnet(reserved_at) WHERE reserved_at IS NOT NULL;
 
 -- Comments for PREPROD
 COMMENT ON TABLE nft_sales_preprod IS 'Tracks NFT sales on Cardano PREPROD (testnet)';

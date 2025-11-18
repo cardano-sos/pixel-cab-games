@@ -1,6 +1,7 @@
 {
   "id": 1335,
   "name": "Arcadian PFP #1335",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "First Blood"
+      "value": "McFly"
     },
     {
       "trait_type": "Mouth",
-      "value": "Van Dyke Grey"
+      "value": "Open"
     },
     {
       "trait_type": "Eyes",
-      "value": "I’ll Be Back"
+      "value": "Robot"
     },
     {
       "trait_type": "Head",
-      "value": "Walkman Dark"
+      "value": "Fly Hat"
     }
   ]
 }

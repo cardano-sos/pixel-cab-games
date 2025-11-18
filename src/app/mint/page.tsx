@@ -39,13 +39,21 @@ interface MintedNFT {
 
 export default function MintPage() {
   const router = useRouter();
-  const { isConnected, walletId, address, disconnect } = useWallet();
+  const { isConnected, walletId, address, disconnect, refreshBalance } = useWallet();
   const [totalAvailable, setTotalAvailable] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
   const [mintStatus, setMintStatus] = useState<MintStatus>({ status: 'idle' });
   const [mintedNFTs, setMintedNFTs] = useState<MintedNFT[]>([]);
   const [paymentTxHash, setPaymentTxHash] = useState<string>("");
+  const [cooldownSeconds, setCooldownSeconds] = useState(0);
+
+  // Queue state
+  const [queueId, setQueueId] = useState<string | null>(null);
+  const [queuePosition, setQueuePosition] = useState<number>(0);
+  const [queueStatus, setQueueStatus] = useState<string>('idle');
+  const [estimatedWaitTime, setEstimatedWaitTime] = useState<number>(0);
+  const [timeoutSeconds, setTimeoutSeconds] = useState<number | null>(null);
 
   // Import NFT configuration
   const { COST_PER_NFT, PROFIT_WALLET, USE_BASE64_IMAGES, COLLECTION } =
@@ -56,6 +64,107 @@ export default function MintPage() {
       loadAvailableCount();
     }
   }, [isConnected]);
+
+  // Restore queue state from localStorage on page load
+  // IMPORTANT: Queue is wallet-based, so validate the saved queue belongs to current wallet
+  useEffect(() => {
+    if (typeof window !== 'undefined' && address) {
+      const savedQueueId = localStorage.getItem('mintQueueId');
+      const savedWallet = localStorage.getItem('mintQueueWallet');
+
+      if (savedQueueId && savedWallet) {
+        // Check if saved queue belongs to current wallet
+        if (savedWallet === address) {
+          console.log('🔄 Restoring queue from localStorage:', savedQueueId);
+          setQueueId(savedQueueId);
+          setQueueStatus('waiting');
+          setMintStatus({ status: 'preparing', message: 'Restoring queue position...' });
+        } else {
+          // Wallet changed, clear old queue data
+          console.log('🔄 Wallet changed, clearing old queue data');
+          localStorage.removeItem('mintQueueId');
+          localStorage.removeItem('mintQueueWallet');
+        }
+      }
+    }
+  }, [address]);
+
+  // Save/clear queue ID in localStorage whenever it changes
+  // Also save wallet address to validate queue belongs to this wallet
+  useEffect(() => {
+    if (typeof window !== 'undefined' && address) {
+      if (queueId) {
+        localStorage.setItem('mintQueueId', queueId);
+        localStorage.setItem('mintQueueWallet', address);
+        console.log('💾 Saved queue to localStorage:', queueId);
+      } else {
+        localStorage.removeItem('mintQueueId');
+        localStorage.removeItem('mintQueueWallet');
+        console.log('🗑️ Cleared queue from localStorage');
+      }
+    }
+  }, [queueId, address]);
+
+  // Cooldown timer
+  useEffect(() => {
+    if (cooldownSeconds > 0) {
+      const timer = setTimeout(() => {
+        setCooldownSeconds(cooldownSeconds - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldownSeconds]);
+
+  // Poll queue status
+  useEffect(() => {
+    if (!queueId || queueStatus === 'completed' || queueStatus === 'failed') {
+      return;
+    }
+
+    const pollQueue = async () => {
+      try {
+        const response = await fetch(`/api/queue/status?queueId=${queueId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setQueuePosition(data.position);
+          setQueueStatus(data.status);
+          setEstimatedWaitTime(data.estimatedWaitTime);
+          setTimeoutSeconds(data.timeoutSeconds);
+
+          // Check if timed out (5 minute limit exceeded)
+          if (data.timeoutSeconds !== undefined && data.timeoutSeconds !== null && data.timeoutSeconds <= 0) {
+            console.log('⏰ Queue timeout - you took too long to mint');
+            setError('Your queue session timed out (5 minute limit). Please try again.');
+            setMintStatus({ status: 'error', message: 'Queue timeout - you took too long to mint. Please try again.' });
+            setQueueId(null);
+            setQueueStatus('failed');
+            return;
+          }
+
+          // If at front of queue (position 1) and status is waiting, can start minting
+          if (data.position === 1 && data.status === 'waiting') {
+            console.log('🎯 Your turn to mint!');
+            // handleMint will proceed automatically
+          }
+        } else if (response.status === 404) {
+          // Queue entry not found (likely cleaned up due to timeout)
+          console.log('⏰ Queue entry not found - likely timed out');
+          setError('Your queue session timed out. Please try again.');
+          setMintStatus({ status: 'error', message: 'Queue timeout. Please try again.' });
+          setQueueId(null);
+          setQueueStatus('failed');
+        }
+      } catch (error) {
+        console.error('Error polling queue:', error);
+      }
+    };
+
+    // Poll every 2 seconds
+    const interval = setInterval(pollQueue, 2000);
+    pollQueue(); // Poll immediately
+
+    return () => clearInterval(interval);
+  }, [queueId, queueStatus]);
 
   const loadAvailableCount = async () => {
     try {
@@ -87,15 +196,65 @@ export default function MintPage() {
         throw new Error("Please set NEXT_PUBLIC_PROFIT_WALLET in your environment variables before minting");
       }
 
-      if (!walletId) {
+      if (!walletId || !address) {
         throw new Error("No wallet connected");
       }
 
-      const wallet = await BrowserWallet.enable(walletId);
+      // Step 1: Join queue
+      setMintStatus({ status: 'preparing', message: 'Joining mint queue...' });
 
-      // Step 1: Get user's UTxOs
+      const queueResponse = await fetch('/api/queue/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ walletAddress: address })
+      });
+
+      if (!queueResponse.ok) {
+        throw new Error('Failed to join queue');
+      }
+
+      const queueData = await queueResponse.json();
+      setQueueId(queueData.queueId);
+      setQueuePosition(queueData.position);
+      setQueueStatus('waiting');
+
+      console.log(`📝 Joined queue at position ${queueData.position}`);
+
+      // Step 2: Wait for our turn (if not at position 1)
+      if (queueData.position > 1) {
+        setMintStatus({
+          status: 'preparing',
+          message: `Queue position: #${queueData.position}. Please wait your turn...`
+        });
+
+        // Wait until we're at front of queue (position 1)
+        while (true) {
+          await new Promise(resolve => setTimeout(resolve, 2000)); // Poll every 2s
+
+          const statusResponse = await fetch(`/api/queue/status?queueId=${queueData.queueId}`);
+          if (!statusResponse.ok) break;
+
+          const statusData = await statusResponse.json();
+          setQueuePosition(statusData.position);
+          setQueueStatus(statusData.status);
+          setEstimatedWaitTime(statusData.estimatedWaitTime);
+
+          if (statusData.position === 1 && statusData.status === 'waiting') {
+            console.log('🎯 Your turn to mint!');
+            break;
+          }
+
+          setMintStatus({
+            status: 'preparing',
+            message: `Queue position: #${statusData.position}. Estimated wait: ${Math.ceil(statusData.estimatedWaitTime / 60)} min`
+          });
+        }
+      }
+
+      // Step 3: Get user's UTxOs
       setMintStatus({ status: 'preparing', message: 'Preparing minting transaction...' });
 
+      const wallet = await BrowserWallet.enable(walletId);
       const userUtxos = await wallet.getUtxos();
       console.log(`User has ${userUtxos.length} UTxOs available`);
 
@@ -107,7 +266,8 @@ export default function MintPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           userAddress: address,
-          userUtxos: userUtxos
+          userUtxos: userUtxos,
+          queueId: queueData.queueId
         })
       });
 
@@ -135,7 +295,8 @@ export default function MintPage() {
           unsignedTx,
           userSignedTx: userSignedTx,
           userAddress: address,
-          nftData
+          nftData,
+          queueId: queueData.queueId
         })
       });
 
@@ -153,22 +314,62 @@ export default function MintPage() {
       setPaymentTxHash(mintData.txHash); // The single minting transaction
 
       // Handle successful mint
+      const successMessage = mintData.confirmed
+        ? '✅ Collectible minted and confirmed on blockchain!'
+        : '🎉 Collectible minted! Confirming on blockchain (may take 30-60s)...';
+
       setMintStatus({
         status: 'success',
-        message: 'Mint successful! Your NFT will arrive in your wallet shortly.',
+        message: successMessage,
         txHash: mintData.txHash
       });
+
+      // Update queue status and clear queue ID (will remove from localStorage)
+      setQueueStatus('completed');
+      setQueueId(null);
 
       // Reload available count after success
       loadAvailableCount();
 
+      // Refresh wallet balance for display
+      try {
+        await refreshBalance();
+        console.log('✅ Wallet balance refreshed');
+      } catch (refreshError) {
+        console.warn('Failed to refresh wallet balance:', refreshError);
+      }
+
+      console.log('✅ Mint completed, queue released for next user');
+
     } catch (error: any) {
       console.error("Minting error:", error);
-      setError(error.message || "Failed to mint NFT");
-      setMintStatus({
-        status: 'error',
-        message: error.message || "Failed to mint NFT"
-      });
+
+      // Detect UTxO conflict errors
+      const errorMessage = error.message || '';
+      const isUtxoConflict = errorMessage.includes('BadInputsUTxO') ||
+                             errorMessage.includes('ValueNotConservedUTxO') ||
+                             errorMessage.includes('already spent');
+
+      if (isUtxoConflict) {
+        setError("Your wallet is still syncing from the previous mint. Please wait 15-30 seconds before trying again.");
+        setMintStatus({
+          status: 'error',
+          message: "⏳ Wallet syncing - please wait 15-30 seconds before minting again. Your previous mint was successful!"
+        });
+
+        // Try to refresh wallet for next attempt
+        try {
+          await refreshBalance();
+        } catch (refreshError) {
+          console.error('Failed to refresh wallet:', refreshError);
+        }
+      } else {
+        setError(errorMessage || "Failed to mint Collectible");
+        setMintStatus({
+          status: 'error',
+          message: errorMessage || "Failed to mint Collectible"
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -212,7 +413,7 @@ export default function MintPage() {
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-yellow-800">Configuration Required</h3>
                 <div className="mt-2 text-sm text-yellow-700">
-                  <p>Before you can mint NFTs, please ensure these environment variables are set on the server:</p>
+                  <p>Before you can mint Collectibles, please ensure these environment variables are set on the server:</p>
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>MINTTING_WALLET_OUTPUT_MNEMONIC (24-word phrase for server-side minting)</li>
                     <li>NEXT_PUBLIC_PROFIT_WALLET (your Cardano wallet address for receiving payments)</li>
@@ -287,7 +488,7 @@ export default function MintPage() {
                 <div className="text-center relative z-10">
                   {mintStatus.status === 'success' && mintedNFTs.length > 0 ? (
                     <>
-                      <h3 className="text-theme-secondary font-bold mb-4 text-xl">Your NFT!</h3>
+                      <h3 className="text-theme-secondary font-bold mb-4 text-xl">Your Collectible!</h3>
                       <div className="inline-block p-4 bg-theme-primary rounded-lg border-2 border-theme-secondary">
                         <img
                           src={`data:image/png;base64,${mintedNFTs[0].imageData}`}
@@ -299,15 +500,32 @@ export default function MintPage() {
                         <p className="text-theme-secondary font-semibold mt-2">{mintedNFTs[0].name}</p>
                       </div>
                     </>
+                  ) : queuePosition > 1 && queueStatus === 'waiting' ? (
+                    <>
+                      <h3 className="text-blue-400 font-bold mb-4 text-xl">You&apos;re in Queue</h3>
+                      <div className="inline-block p-4 bg-theme-primary rounded-lg border-2 border-blue-500">
+                        <div className="w-48 h-48 bg-gradient-to-br from-blue-900 to-purple-900 rounded flex items-center justify-center relative overflow-hidden">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-32 h-32 border-8 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+                          </div>
+                          <div className="text-center z-10">
+                            <div className="text-5xl font-bold text-white mb-2">#{queuePosition}</div>
+                            <div className="text-sm text-blue-300">in queue</div>
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <p className="text-blue-400 text-sm mt-2 font-medium">Please wait your turn...</p>
+                      </div>
+                    </>
                   ) : (
                     <>
-                      <h3 className="text-theme-secondary font-bold mb-4 text-xl">Mystery NFT</h3>
+                      <h3 className="text-theme-secondary font-bold mb-4 text-xl">Mystery Collectible</h3>
                       <div className="inline-block p-4 bg-theme-primary rounded-lg border-2 border-theme-secondary">
                         <div className="w-48 h-48 bg-gradient-to-br from-purple-900 to-pink-900 rounded flex items-center justify-center relative overflow-hidden">
                           <span className="text-6xl animate-pulse">❓</span>
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         </div>
-                        <p className="text-gray-400 text-sm mt-2">Mystery NFT</p>
+                        <p className="text-gray-400 text-sm mt-2">Mystery Collectible</p>
                       </div>
                     </>
                   )}
@@ -325,11 +543,11 @@ export default function MintPage() {
 
             <div className="p-8 md:w-1/2">
               <h1 className="text-2xl font-bold text-theme-primary mb-4">
-                Mint Pixel Cab NFT
+                Mint Pixel Cab Collectible
               </h1>
 
               <p className="text-gray-700 mb-6">
-                Mint a randomly selected NFT from the Pixel Cab collection! Your NFT will be revealed after minting.
+                Mint a randomly selected Collectible from the Pixel Cab collection! Your Collectible will be revealed after minting.
               </p>
 
               {/* Cost Display */}
@@ -338,7 +556,7 @@ export default function MintPage() {
                   <span className="text-gray-700 font-semibold">Cost:</span>
                   <span className="text-2xl font-bold text-theme-primary">{COST_PER_NFT} ADA</span>
                 </div>
-                <p className="text-xs text-gray-500 mt-1">One NFT per mint</p>
+                <p className="text-xs text-gray-500 mt-1">One Collectible per mint</p>
               </div>
 
               {/* Status Messages */}
@@ -381,33 +599,132 @@ export default function MintPage() {
                 <div className="mb-4 text-theme-accent text-sm font-medium">{error}</div>
               )}
 
+              {/* Queue Status - Enhanced */}
+              {queueId && queueStatus !== 'completed' && queueStatus !== 'failed' && (
+                <div className="mb-6">
+                  {queuePosition > 1 && queueStatus === 'waiting' ? (
+                    /* Waiting in Queue - Prominent Display */
+                    <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 rounded-lg border-2 border-blue-500/50 p-6 shadow-lg">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          {/* Animated Loading Spinner */}
+                          <div className="relative">
+                            <div className="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <span className="text-blue-400 font-bold text-sm">#{queuePosition}</span>
+                            </div>
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white">You&apos;re in the Queue!</h3>
+                            <p className="text-blue-300 text-sm">Position #{queuePosition} of {queuePosition} waiting</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-black/30 rounded-lg p-4 mb-4">
+                        <p className="text-white font-medium mb-2">⏳ Please wait your turn</p>
+                        <p className="text-gray-300 text-sm">
+                          The page will <span className="text-green-400 font-semibold">automatically start minting</span> when it&apos;s your turn.
+                          You don&apos;t need to do anything - just keep this page open!
+                        </p>
+                      </div>
+
+                      {estimatedWaitTime > 0 && (
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-400">Estimated wait time:</span>
+                          <span className="text-yellow-400 font-bold">
+                            ~{Math.ceil(estimatedWaitTime / 60)} minute{Math.ceil(estimatedWaitTime / 60) !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Timeout countdown - show if queue position is 1 */}
+                      {queuePosition === 1 && timeoutSeconds !== null && timeoutSeconds > 0 && (
+                        <div className="mt-3 p-3 bg-red-900/30 border border-red-500/50 rounded-lg">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="text-red-300 font-medium">⏰ Time remaining to mint:</span>
+                            <span className="text-red-400 font-bold text-lg">
+                              {Math.floor(timeoutSeconds / 60)}:{(timeoutSeconds % 60).toString().padStart(2, '0')}
+                            </span>
+                          </div>
+                          <p className="text-xs text-red-300 mt-2">
+                            You have 5 minutes to complete your mint or you&apos;ll lose your turn.
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="mt-4 pt-4 border-t border-white/10">
+                        <p className="text-xs text-gray-400 text-center">
+                          💡 Each person must fully complete their mint before the next person can start.
+                          This ensures zero transaction conflicts.
+                        </p>
+                        <p className="text-xs text-gray-500 text-center mt-2">
+                          ⚠️ You&apos;ll have 5 minutes to mint once it&apos;s your turn.
+                        </p>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Currently Minting or Confirming - Compact Display */
+                    <div className="bg-gray-800 rounded-lg border border-gray-700 p-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 border-3 border-green-500/30 border-t-green-500 rounded-full animate-spin"></div>
+                        <div className="flex-1">
+                          {queuePosition === 1 && queueStatus === 'minting' && (
+                            <div className="text-green-400 font-medium">🔨 Minting your Collectible...</div>
+                          )}
+                          {queueStatus === 'confirming' && (
+                            <div className="text-yellow-400 font-medium">⏳ Confirming on blockchain (~30s)...</div>
+                          )}
+                          <div className="text-xs text-gray-400 mt-1">Queue Position: #{queuePosition}</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Mint Button */}
               <button
                 onClick={handleMint}
-                disabled={isLoading || mintStatus.status === 'success' || needsConfiguration}
+                disabled={isLoading || mintStatus.status === 'success' || needsConfiguration || cooldownSeconds > 0 || (queuePosition > 1 && queueStatus === 'waiting')}
                 className={`w-full bg-theme-secondary text-theme-primary py-3 px-6 rounded-lg font-semibold
-                  ${(isLoading || mintStatus.status === 'success' || needsConfiguration) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-theme-highlight'}
+                  ${(isLoading || mintStatus.status === 'success' || needsConfiguration || cooldownSeconds > 0 || (queuePosition > 1 && queueStatus === 'waiting')) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-theme-highlight'}
                   transition-colors
                 `}
               >
-                {needsConfiguration ? 'Configuration Required' :
-                  isLoading ? 'Minting...' :
-                  mintStatus.status === 'success' ? 'Mint Successful!' :
-                    `Mint NFT (${COST_PER_NFT} ADA)`}
+                {queuePosition > 1 && queueStatus === 'waiting'
+                  ? `⏳ Waiting in Queue (Position #${queuePosition})`
+                  : cooldownSeconds > 0
+                  ? `Please wait ${cooldownSeconds}s (wallet syncing...)`
+                  : needsConfiguration
+                  ? 'Configuration Required'
+                  : isLoading
+                  ? 'Minting...'
+                  : mintStatus.status === 'success'
+                  ? 'Mint Successful!'
+                  : `Mint Collectible (${COST_PER_NFT} ADA)`}
               </button>
 
               {/* Reset Button after success */}
               {mintStatus.status === 'success' && (
                 <button
                   onClick={() => {
-                    setMintStatus({ status: 'idle' });
-                    setMintedNFTs([]);
-                    setPaymentTxHash("");
-                    loadAvailableCount();
+                    // Warn user they'll go to back of queue
+                    const confirmMint = window.confirm(
+                      "If you mint again, you will be placed at the back of the queue.\n\n" +
+                      "Are you sure you want to mint another Collectible?"
+                    );
+
+                    if (confirmMint) {
+                      setMintStatus({ status: 'idle' });
+                      setMintedNFTs([]);
+                      setPaymentTxHash("");
+                      loadAvailableCount();
+                    }
                   }}
                   className="w-full mt-4 bg-white border-2 border-theme-blue text-theme-blue py-2 px-6 rounded-lg font-semibold hover:bg-theme-blue hover:text-white transition-colors"
                 >
-                  Mint Another NFT
+                  Mint Another Collectible
                 </button>
               )}
             </div>

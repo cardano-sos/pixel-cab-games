@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { BlockfrostProvider, MeshTxBuilder, resolveNativeScriptHash, NativeScript, serializeNativeScript } from '@meshsdk/core';
-import { getRandomAvailableNFTIds } from '@/lib/db';
+import { getRandomAvailableNFTIds, reserveNFT } from '@/lib/db';
+import { mintQueue } from '@/lib/mintQueue';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as CardanoWasm from '@emurgo/cardano-serialization-lib-nodejs';
@@ -12,13 +13,28 @@ import * as bip39 from 'bip39';
  */
 export async function POST(request: NextRequest) {
   try {
-    const { userAddress, userUtxos } = await request.json();
+    const { userAddress, userUtxos, queueId } = await request.json();
 
     // Validate inputs
-    if (!userAddress || !userUtxos) {
+    if (!userAddress || !userUtxos || !queueId) {
       return NextResponse.json(
-        { error: 'Missing required fields: userAddress, userUtxos' },
+        { error: 'Missing required fields: userAddress, userUtxos, queueId' },
         { status: 400 }
+      );
+    }
+
+    // Check if user is allowed to mint (must be first in queue)
+    if (!await mintQueue.canMint(queueId)) {
+      const status = await mintQueue.getQueueStatus(queueId);
+      return NextResponse.json(
+        {
+          error: 'Not your turn',
+          message: status
+            ? `You are #${status.position} in queue. Please wait...`
+            : 'Invalid queue ID. Please rejoin the queue.',
+          queuePosition: status?.position || 0
+        },
+        { status: 403 }
       );
     }
 
@@ -34,18 +50,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Randomly select 1 NFT
-    const selectedNFTIds = await getRandomAvailableNFTIds(1);
+    // Try to reserve an available NFT
+    // Get several candidates in case first ones are reserved by concurrent requests
+    const candidateNFTIds = await getRandomAvailableNFTIds(5);
 
-    if (selectedNFTIds.length < 1) {
+    if (candidateNFTIds.length < 1) {
       return NextResponse.json(
-        { error: 'No NFTs available' },
+        { error: 'No Collectibles available' },
         { status: 400 }
       );
     }
 
-    const nftId = selectedNFTIds[0];
-    console.log(`🎲 Selected NFT: ${nftId}`);
+    // Try to reserve each candidate until successful
+    let nftId: number | null = null;
+    for (const candidateId of candidateNFTIds) {
+      const reserved = await reserveNFT(candidateId, userAddress);
+      if (reserved) {
+        nftId = candidateId;
+        console.log(`✅ Reserved NFT ${nftId} for ${userAddress}`);
+        break;
+      }
+    }
+
+    // If all candidates failed, no Collectibles available
+    if (nftId === null) {
+      await mintQueue.failMint(queueId, 'No Collectibles available');
+      return NextResponse.json(
+        { error: 'No Collectibles available - all were just reserved by other users. Please try again.' },
+        { status: 409 } // 409 Conflict
+      );
+    }
+
+    // Mark queue entry as "minting"
+    await mintQueue.startMinting(queueId, nftId);
 
     // Load metadata and image
     const metadataPath = path.join(process.cwd(), 'images', 'nfts', 'metadata', `${nftId}.json`);
@@ -142,9 +179,33 @@ export async function POST(request: NextRequest) {
       ]
     };
 
+    // Add description if it exists in metadata
+    // Cardano metadata has a 64-byte limit for string values
+    if (nftMetadata.description) {
+      let description = nftMetadata.description;
+
+      // Truncate to 64 bytes if needed
+      if (description.length > 64) {
+        description = description.substring(0, 61) + '...'; // 61 + 3 = 64 bytes
+        console.log(`⚠️ Description truncated to 64 bytes: "${description}"`);
+      }
+
+      assetMetadata.description = description;
+      console.log(`📝 Added description to metadata: ${description}`);
+    }
+
     // Add attributes to metadata
+    // Also validate 64-byte limit for attribute values
     nftMetadata.attributes.forEach((attr: any) => {
-      assetMetadata[attr.trait_type] = attr.value;
+      let value = String(attr.value);
+
+      // Truncate attribute values to 64 bytes if needed
+      if (value.length > 64) {
+        value = value.substring(0, 61) + '...';
+        console.log(`⚠️ Attribute "${attr.trait_type}" value truncated to 64 bytes`);
+      }
+
+      assetMetadata[attr.trait_type] = value;
     });
 
     // Prepare metadata for minting

@@ -1,6 +1,7 @@
 {
   "id": 593,
   "name": "Arcadian PFP #593",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Rocker"
+      "value": "8 Ball Black & White"
     },
     {
       "trait_type": "Mouth",
-      "value": "Van Dyke Brown"
+      "value": "Brown Handlebars"
     },
     {
       "trait_type": "Eyes",
-      "value": "I’ll Be Back"
+      "value": "Glazed"
     },
     {
       "trait_type": "Head",
-      "value": "Mullet Grey"
+      "value": "Tight Fro"
     }
   ]
 }

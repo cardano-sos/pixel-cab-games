@@ -1,6 +1,7 @@
 {
   "id": 423,
   "name": "Arcadian PFP #423",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Come With Me If You Want To Live"
+      "value": "Windcheater"
     },
     {
       "trait_type": "Mouth",
-      "value": "Cheeky"
+      "value": "Van Dyke Brown"
     },
     {
       "trait_type": "Eyes",
-      "value": "Wraparounds"
+      "value": "Normal"
     },
     {
       "trait_type": "Head",
-      "value": "Nerd"
+      "value": "Mullet Blonde"
     }
   ]
 }

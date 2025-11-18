@@ -1,6 +1,7 @@
 {
   "id": 1997,
   "name": "Arcadian PFP #1997",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Vintage Wincheater"
+      "value": "Blues Musician"
     },
     {
       "trait_type": "Mouth",
-      "value": "Van Dyke Brown"
+      "value": "Soup Strainer"
     },
     {
       "trait_type": "Eyes",
-      "value": "Sleep Deprived"
+      "value": "Thick  Brows"
     },
     {
       "trait_type": "Head",
-      "value": "Mullet Blonde"
+      "value": "Why So Serious"
     }
   ]
 }

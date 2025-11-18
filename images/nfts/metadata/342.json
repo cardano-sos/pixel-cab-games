@@ -1,6 +1,7 @@
 {
   "id": 342,
   "name": "Arcadian PFP #342",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Who You Gonna call"
+      "value": "Blues Musician"
     },
     {
       "trait_type": "Mouth",
-      "value": "Van Dyke Grey"
+      "value": "Grizzly Adams"
     },
     {
       "trait_type": "Eyes",
-      "value": "Space Visor"
+      "value": "Skeptical"
     },
     {
       "trait_type": "Head",
-      "value": "Mohawk Brown"
+      "value": "Raccoon Suit"
     }
   ]
 }

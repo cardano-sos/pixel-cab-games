@@ -5,8 +5,8 @@ import { WalletProvider } from "@/providers/WalletProvider";
 import "@meshsdk/react/styles.css";
 
 export const metadata: Metadata = {
-  title: "Pixel Cab Games - Cardano NFT Minting",
-  description: "Mint unique Pixel Cab Games NFTs on the Cardano blockchain. Connect your wallet and join the collection.",
+  title: "Pixel Cab Games - Cardano Collectible Minting",
+  description: "Mint unique Pixel Cab Games Collectibles on the Cardano blockchain. Connect your wallet and join the collection.",
 };
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 {
   "id": 1957,
   "name": "Arcadian PFP #1957",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Blues Musician"
+      "value": "Come With Me If You Want To Live"
     },
     {
       "trait_type": "Mouth",
-      "value": "Smoking"
+      "value": "Van Dyke Blonde"
     },
     {
       "trait_type": "Eyes",
-      "value": "I’ll Be Back"
+      "value": "Skeptical"
     },
     {
       "trait_type": "Head",
-      "value": "Dawson"
+      "value": "Rocker"
     }
   ]
 }

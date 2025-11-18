@@ -174,13 +174,18 @@ export async function markNFTAsSold(
 export async function getAvailableNFTIds(): Promise<number[]> {
   await ensureMigrations();
 
-  const { data, error } = await supabase.rpc(getFunctionName('get_available_nfts'));
+  // Supabase RPC has a default limit of 1000 rows
+  // Use range to get all 2000 rows
+  const { data, error } = await supabase
+    .rpc(getFunctionName('get_available_nfts'))
+    .range(0, 1999);
 
   if (error) {
     console.error('Error fetching available NFT IDs:', error);
     return [];
   }
 
+  console.log(`📊 Fetched ${data?.length || 0} available NFT IDs`);
   return data.map((row: { nft_id: number }) => row.nft_id);
 }
 
@@ -304,4 +309,138 @@ export async function getSalesStats(): Promise<{
  */
 export function getCurrentNetwork(): CardanoNetwork {
   return getCardanoNetwork();
+}
+
+/**
+ * Reserve an NFT for a specific wallet
+ * Creates a reservation that expires after 5 minutes
+ * Returns false if NFT is already reserved/sold
+ */
+export async function reserveNFT(
+  nftId: number,
+  walletAddress: string
+): Promise<boolean> {
+  await ensureMigrations();
+
+  // First, clean up expired reservations
+  await cleanupExpiredReservations();
+
+  // Check if already sold or reserved
+  const existing = await supabase
+    .from(getTableName())
+    .select('nft_id, reserved_at, reserved_by')
+    .eq('nft_id', nftId)
+    .single();
+
+  if (existing.data) {
+    // If it has reserved_at, check if still valid (within 5 min)
+    if (existing.data.reserved_at) {
+      const reservedTime = new Date(existing.data.reserved_at).getTime();
+      const now = Date.now();
+      const fiveMinutes = 5 * 60 * 1000;
+
+      if (now - reservedTime < fiveMinutes) {
+        console.log(`NFT ${nftId} is already reserved by ${existing.data.reserved_by}`);
+        return false;
+      }
+      // If expired, delete it and continue with reservation
+      await supabase
+        .from(getTableName())
+        .delete()
+        .eq('nft_id', nftId);
+    } else {
+      // reserved_at is NULL, meaning it's sold
+      console.log(`NFT ${nftId} is already sold`);
+      return false;
+    }
+  }
+
+  // Create reservation
+  const { error } = await supabase
+    .from(getTableName())
+    .insert({
+      nft_id: nftId,
+      wallet_address: walletAddress,
+      tx_hash: null, // NULL for reservations, will be set on submit
+      reserved_at: new Date().toISOString(),
+      reserved_by: walletAddress
+    });
+
+  if (error) {
+    console.error('Error reserving NFT:', error);
+    return false;
+  }
+
+  console.log(`✅ Reserved NFT ${nftId} for ${walletAddress}`);
+  return true;
+}
+
+/**
+ * Convert a reservation to a sale
+ * Clears reserved_at and reserved_by, updates tx_hash
+ */
+export async function convertReservationToSale(
+  nftId: number,
+  txHash: string
+): Promise<void> {
+  await ensureMigrations();
+
+  const { error } = await supabase
+    .from(getTableName())
+    .update({
+      tx_hash: txHash,
+      reserved_at: null, // Clear reservation
+      reserved_by: null
+    })
+    .eq('nft_id', nftId);
+
+  if (error) {
+    console.error('Error converting reservation to sale:', error);
+    throw new Error(`Failed to convert reservation for NFT ${nftId}: ${error.message}`);
+  }
+
+  console.log(`✅ Converted reservation to sale for NFT ${nftId}`);
+}
+
+/**
+ * Cancel a reservation (if user abandons mint)
+ */
+export async function cancelReservation(nftId: number): Promise<void> {
+  await ensureMigrations();
+
+  // Only delete if it's still a reservation (has reserved_at)
+  const { error } = await supabase
+    .from(getTableName())
+    .delete()
+    .eq('nft_id', nftId)
+    .not('reserved_at', 'is', null);
+
+  if (error) {
+    console.error('Error canceling reservation:', error);
+  } else {
+    console.log(`Canceled reservation for NFT ${nftId}`);
+  }
+}
+
+/**
+ * Clean up expired reservations (older than 5 minutes)
+ * Returns number of cleaned up reservations
+ */
+export async function cleanupExpiredReservations(): Promise<number> {
+  await ensureMigrations();
+
+  const { data, error } = await supabase.rpc(
+    getFunctionName('cleanup_expired_reservations')
+  );
+
+  if (error) {
+    console.error('Error cleaning up expired reservations:', error);
+    return 0;
+  }
+
+  if (data && data > 0) {
+    console.log(`🧹 Cleaned up ${data} expired reservations`);
+  }
+
+  return data || 0;
 }

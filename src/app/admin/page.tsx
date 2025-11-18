@@ -34,6 +34,17 @@ export default function AdminPage() {
   const [burnSuccess, setBurnSuccess] = useState("");
   const [burnTxHash, setBurnTxHash] = useState("");
 
+  // Queue management state
+  const [queueData, setQueueData] = useState<any>(null);
+  const [queueLoading, setQueueLoading] = useState(false);
+  const [queueError, setQueueError] = useState("");
+  const [queueSuccess, setQueueSuccess] = useState("");
+
+  // Reservation cleanup state
+  const [reservationLoading, setReservationLoading] = useState(false);
+  const [reservationError, setReservationError] = useState("");
+  const [reservationSuccess, setReservationSuccess] = useState("");
+
   // Define checkAuth function before using it in useEffect
   const checkAuth = useCallback(async () => {
     try {
@@ -238,6 +249,102 @@ export default function AdminPage() {
     }
   };
 
+  // Queue management functions
+  const loadQueueData = async () => {
+    setQueueLoading(true);
+    setQueueError("");
+    setQueueSuccess("");
+    try {
+      const response = await fetch('/api/admin/queue');
+      const data = await response.json();
+
+      if (response.ok) {
+        setQueueData(data);
+      } else {
+        setQueueError(data.error || 'Failed to load queue data');
+      }
+    } catch (err: any) {
+      setQueueError(err.message);
+    } finally {
+      setQueueLoading(false);
+    }
+  };
+
+  const clearQueue = async () => {
+    if (!confirm('Are you sure you want to clear the entire queue? This will remove ALL users currently waiting.')) {
+      return;
+    }
+
+    setQueueLoading(true);
+    setQueueError("");
+    setQueueSuccess("");
+    try {
+      const response = await fetch('/api/admin/queue', {
+        method: 'DELETE'
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setQueueSuccess(`Successfully cleared ${data.deleted} entries from queue`);
+        loadQueueData(); // Reload queue data
+      } else {
+        setQueueError(data.error || 'Failed to clear queue');
+      }
+    } catch (err: any) {
+      setQueueError(err.message);
+    } finally {
+      setQueueLoading(false);
+    }
+  };
+
+  const runQueueCleanup = async () => {
+    setQueueLoading(true);
+    setQueueError("");
+    setQueueSuccess("");
+    try {
+      const response = await fetch('/api/admin/queue', {
+        method: 'POST'
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setQueueSuccess('Cleanup completed successfully');
+        setQueueData(data);
+      } else {
+        setQueueError(data.error || 'Failed to run cleanup');
+      }
+    } catch (err: any) {
+      setQueueError(err.message);
+    } finally {
+      setQueueLoading(false);
+    }
+  };
+
+  // Reservation cleanup function
+  const cleanupReservations = async () => {
+    setReservationLoading(true);
+    setReservationError("");
+    setReservationSuccess("");
+    try {
+      const response = await fetch('/api/admin/reservations', {
+        method: 'POST'
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setReservationSuccess(data.message || `Cleaned up ${data.cleaned} reservations`);
+        // Refresh stats to show updated "Recent Sales"
+        checkAuth();
+      } else {
+        setReservationError(data.error || 'Failed to cleanup reservations');
+      }
+    } catch (err: any) {
+      setReservationError(err.message);
+    } finally {
+      setReservationLoading(false);
+    }
+  };
+
   const percentage = stats ? ((stats.sold / stats.totalSupply) * 100).toFixed(2) : '0';
 
   // Loading state
@@ -410,11 +517,15 @@ export default function AdminPage() {
                             {sale.walletAddress.slice(0, 12)}...
                           </td>
                           <td className="px-6 py-4 text-sm">
-                            <a href={`https://${stats.network === 'MAINNET' ? '' : 'preprod.'}cardanoscan.io/transaction/${sale.txHash}`}
-                               target="_blank"
-                               className="text-blue-400 hover:underline font-mono">
-                              {sale.txHash.slice(0, 12)}...
-                            </a>
+                            {sale.txHash ? (
+                              <a href={`https://${stats.network === 'MAINNET' ? '' : 'preprod.'}cardanoscan.io/transaction/${sale.txHash}`}
+                                 target="_blank"
+                                 className="text-blue-400 hover:underline font-mono">
+                                {sale.txHash.slice(0, 12)}...
+                              </a>
+                            ) : (
+                              <span className="text-yellow-500 italic">Reserved</span>
+                            )}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-400">{sale.soldAt}</td>
                         </tr>
@@ -615,6 +726,153 @@ export default function AdminPage() {
               >
                 🔄 Refresh All
               </button>
+            </div>
+
+            {/* Queue Management Card */}
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 md:col-span-2">
+              <h3 className="text-xl font-semibold mb-2">🚦 Queue Management</h3>
+              <p className="text-gray-400 text-sm mb-4">View and manage the mint queue</p>
+
+              {queueError && (
+                <div className="bg-red-900/50 border border-red-600 rounded p-3 mb-4">
+                  <p className="text-red-200 text-sm">{queueError}</p>
+                </div>
+              )}
+
+              {queueSuccess && (
+                <div className="bg-green-900/50 border border-green-600 rounded p-3 mb-4">
+                  <p className="text-green-200 text-sm">{queueSuccess}</p>
+                </div>
+              )}
+
+              {queueData && (
+                <div className="bg-gray-700 rounded p-4 mb-4">
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <p className="text-gray-400 text-xs">Active Entries</p>
+                      <p className="text-2xl font-bold text-blue-400">{queueData.queueLength}</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-400 text-xs">Total Entries</p>
+                      <p className="text-2xl font-bold text-purple-400">{queueData.entries?.length || 0}</p>
+                    </div>
+                  </div>
+
+                  {queueData.entries && queueData.entries.length > 0 && (
+                    <div className="max-h-60 overflow-y-auto">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-600 sticky top-0">
+                          <tr>
+                            <th className="text-left p-2">Wallet</th>
+                            <th className="text-left p-2">Status</th>
+                            <th className="text-left p-2">NFT ID</th>
+                            <th className="text-left p-2">Created</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {queueData.entries.map((entry: any, idx: number) => (
+                            <tr key={entry.id} className={idx % 2 === 0 ? 'bg-gray-800' : 'bg-gray-750'}>
+                              <td className="p-2 font-mono text-xs">
+                                {entry.wallet_address.slice(0, 8)}...{entry.wallet_address.slice(-6)}
+                              </td>
+                              <td className="p-2">
+                                <span className={`px-2 py-1 rounded text-xs ${
+                                  entry.status === 'waiting' ? 'bg-blue-900 text-blue-200' :
+                                  entry.status === 'minting' ? 'bg-yellow-900 text-yellow-200' :
+                                  entry.status === 'confirming' ? 'bg-purple-900 text-purple-200' :
+                                  entry.status === 'completed' ? 'bg-green-900 text-green-200' :
+                                  'bg-red-900 text-red-200'
+                                }`}>
+                                  {entry.status}
+                                </span>
+                              </td>
+                              <td className="p-2">{entry.nft_id || '-'}</td>
+                              <td className="p-2 text-xs text-gray-400">
+                                {new Date(entry.created_at).toLocaleTimeString()}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  {queueData.entries && queueData.entries.length === 0 && (
+                    <p className="text-gray-400 text-sm text-center py-4">Queue is empty</p>
+                  )}
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={loadQueueData}
+                  disabled={queueLoading}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded flex items-center gap-2"
+                >
+                  {queueLoading ? '⏳' : '🔄'} {queueLoading ? 'Loading...' : 'Load Queue'}
+                </button>
+
+                <button
+                  onClick={runQueueCleanup}
+                  disabled={queueLoading}
+                  className="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded flex items-center gap-2"
+                >
+                  🧹 Cleanup Stale
+                </button>
+
+                <button
+                  onClick={clearQueue}
+                  disabled={queueLoading || !queueData || queueData.queueLength === 0}
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded flex items-center gap-2"
+                >
+                  🗑️ Clear All
+                </button>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-3">
+                💡 &quot;Cleanup Stale&quot; removes entries older than 5 minutes. &quot;Clear All&quot; removes ALL entries immediately.
+              </p>
+            </div>
+
+            {/* Reservation Cleanup Card */}
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+              <h3 className="text-xl font-semibold mb-2">🧹 Reservation Cleanup</h3>
+              <p className="text-gray-400 text-sm mb-4">Remove abandoned reservations from Recent Sales</p>
+
+              {reservationError && (
+                <div className="bg-red-900/50 border border-red-600 rounded p-3 mb-4">
+                  <p className="text-red-200 text-sm">{reservationError}</p>
+                </div>
+              )}
+
+              {reservationSuccess && (
+                <div className="bg-green-900/50 border border-green-600 rounded p-3 mb-4">
+                  <p className="text-green-200 text-sm">{reservationSuccess}</p>
+                </div>
+              )}
+
+              <div className="bg-gray-700 rounded p-4 mb-4">
+                <p className="text-sm text-gray-300 mb-2">
+                  Clean up reservations that are:
+                </p>
+                <ul className="text-sm text-gray-400 space-y-1 ml-4">
+                  <li>• Older than 10 minutes</li>
+                  <li>• Still showing &quot;Reserved&quot; (no TX hash)</li>
+                  <li>• From abandoned mint attempts</li>
+                </ul>
+              </div>
+
+              <button
+                onClick={cleanupReservations}
+                disabled={reservationLoading}
+                className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded flex items-center justify-center gap-2"
+              >
+                {reservationLoading ? '⏳ Cleaning...' : '🧹 Cleanup Reservations'}
+              </button>
+
+              <p className="text-xs text-gray-500 mt-3">
+                💡 This removes entries from &quot;Recent Sales&quot; that show &quot;Reserved&quot; but were never completed.
+              </p>
             </div>
           </div>
         )}

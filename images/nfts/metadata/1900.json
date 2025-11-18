@@ -1,6 +1,7 @@
 {
   "id": 1900,
   "name": "Arcadian PFP #1900",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -16,15 +17,15 @@
     },
     {
       "trait_type": "Mouth",
-      "value": "Closed"
+      "value": "Mutton Chops"
     },
     {
       "trait_type": "Eyes",
-      "value": "Sleep Deprived"
+      "value": "Normal"
     },
     {
       "trait_type": "Head",
-      "value": "Backwards Cap"
+      "value": "Mullet Brown"
     }
   ]
 }

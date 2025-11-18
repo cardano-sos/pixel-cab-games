@@ -1,6 +1,7 @@
 {
   "id": 435,
   "name": "Arcadian PFP #435",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,11 +13,11 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Lifeguard"
+      "value": "Vintage Wincheater"
     },
     {
       "trait_type": "Mouth",
-      "value": "Nerd"
+      "value": "Van Dyke Brown"
     },
     {
       "trait_type": "Eyes",
@@ -24,7 +25,7 @@
     },
     {
       "trait_type": "Head",
-      "value": "Dawson"
+      "value": "Plumbers Hat"
     }
   ]
 }

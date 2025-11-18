@@ -1,6 +1,7 @@
 {
   "id": 1798,
   "name": "Arcadian PFP #1798",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,7 +13,7 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Come With Me If You Want To Live"
+      "value": "Letterman Jacket"
     },
     {
       "trait_type": "Mouth",
@@ -20,11 +21,11 @@
     },
     {
       "trait_type": "Eyes",
-      "value": "Fashion Sunglasses"
+      "value": "Thick  Brows"
     },
     {
       "trait_type": "Head",
-      "value": "Mullet Blonde"
+      "value": "Wax On"
     }
   ]
 }

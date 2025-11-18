@@ -1,6 +1,7 @@
 {
   "id": 178,
   "name": "Arcadian PFP #178",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,19 +13,19 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Who You Gonna call"
+      "value": "8 Ball Black & White"
     },
     {
       "trait_type": "Mouth",
-      "value": "Van Dyke Grey"
+      "value": "Jawdropping"
     },
     {
       "trait_type": "Eyes",
-      "value": "Sleep Deprived"
+      "value": "Normal"
     },
     {
       "trait_type": "Head",
-      "value": "Military Cut"
+      "value": "Bandana"
     }
   ]
 }

@@ -1,6 +1,7 @@
 {
   "id": 991,
   "name": "Arcadian PFP #991",
+  "description": "This Arcadian is your all access pass to the Pixel Cab Games ecosystem.",
   "attributes": [
     {
       "trait_type": "Background",
@@ -12,15 +13,15 @@
     },
     {
       "trait_type": "Clothing",
-      "value": "Wrestlers Singlet"
+      "value": "Blues Musician"
     },
     {
       "trait_type": "Mouth",
-      "value": "Cheeky"
+      "value": "Grizzly Adams"
     },
     {
       "trait_type": "Eyes",
-      "value": "Degen Sunnies"
+      "value": "Normal"
     },
     {
       "trait_type": "Head",
